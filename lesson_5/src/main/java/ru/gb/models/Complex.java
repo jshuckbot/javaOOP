@@ -60,12 +60,12 @@ public class Complex implements PerformanceNumber<Complex> {
     @Override
     public String toString() {
         if (this.imaginary > 0) {
-            return String.format("\nРезультат работы: %.2f + %.2fi", this.real, this.imaginary);
+            return String.format("%.2f + %.2fi", this.real, this.imaginary);
         } else if (this.imaginary < 0) {
-            return String.format("\nРезультат работы: %.2f%.2fi", this.real, this.imaginary);
+            return String.format("%.2f%.2fi", this.real, this.imaginary);
 
         } else {
-            return String.format("\nРезультат работы %.2f", this.real);
+            return String.format("%.2f", this.real);
         }
     }
 }

@@ -43,6 +43,10 @@ public class Rational implements PerformanceNumber<Rational> {
 
     @Override
     public String toString() {
-        return String.format("\nРезультат работы: %.2f", this.number);
+        return String.format("%.2f", this.number);
+    }
+
+    public Double getNumber() {
+        return number;
     }
 }

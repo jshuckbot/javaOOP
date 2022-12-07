@@ -1,6 +1,10 @@
 package ru.gb;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import ru.gb.Exception.DivisionByZeroException;
@@ -15,7 +19,8 @@ import ru.gb.view.RationalOrComplexMenu;
 import ru.gb.view.ViewResult;
 
 public class Controller {
-    private static final Logger logger = Logger.getGlobal();
+    private static final Logger logger = Logger.getLogger(Controller.class.getName());
+    Handler fileHandler;
     RationalOrComplexMenu rationalOrComplexMenu;
     InputItemMenu itemMenu;
     InputComplex inputComplex;
@@ -24,24 +29,32 @@ public class Controller {
     PerformanceNumber<Object> number;
     ArrayList<PerformanceNumber<Object>> numbers;
 
-    public Controller() {
+    public Controller() throws IOException {
         this.rationalOrComplexMenu = new RationalOrComplexMenu();
         this.operationMenu = new OperationMenu();
         this.itemMenu = new InputItemMenu();
         this.inputComplex = new InputComplex();
         this.inputRational = new InputRational();
+        fileHandler = new FileHandler();
     }
 
     public void run() {
             rationalOrComplexMenu.show();
             itemMenu.entry();
+            logger.setUseParentHandlers(false);
+            logger.addHandler(fileHandler);
+
 
         while (itemMenu.get() != 0) {
             numbers = new ArrayList<>();
             choiceViewCalculatorAndEntryNumbers(itemMenu.get());
             operationMenu.show();
             itemMenu.entry();
-            choiceOperationWithNumbers(itemMenu.get());
+            try {
+                choiceOperationWithNumbers(itemMenu.get());
+            } catch (DivisionByZeroException de) {
+                System.out.println(de);
+            }
             rationalOrComplexMenu.show();
             itemMenu.entry();
         }
@@ -67,18 +80,22 @@ public class Controller {
         }
     }
 
-    private void choiceOperationWithNumbers(int item) {
+    private void choiceOperationWithNumbers(int item) throws DivisionByZeroException{
+
         switch (item) {
-            case 1 -> ViewResult.show(numbers.get(0).add(numbers.get(1)));
+            case 1 -> {
+                String logResult = (numbers.get(0).add(numbers.get(1))).toString();
+                ViewResult.show(numbers.get(0).add(numbers.get(1)));
+                String logExep = String.format("%s + %s = %s",
+                                               numbers.get(0),
+                                               numbers.get(1),
+                                               logResult);
+
+                logger.log(Level.INFO, logExep);
+            }
             case 2 -> ViewResult.show(numbers.get(0).sub(numbers.get(1)));
             case 3 -> ViewResult.show(numbers.get(0).mul(numbers.get(1)));
-            case 4 -> {
-                try{
-                ViewResult.show(numbers.get(0).div(numbers.get(1)));
-                } catch (DivisionByZeroException e) {
-                    System.out.println(e);
-                }
-            }
+            case 4 -> ViewResult.show(numbers.get(0).div(numbers.get(1)));
         }
 //        System.out.println(numbers.get(0).add(numbers.get(1)));
 
