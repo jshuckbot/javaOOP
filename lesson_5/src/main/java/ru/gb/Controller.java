@@ -54,6 +54,7 @@ public class Controller {
                 choiceOperationWithNumbers(itemMenu.get());
             } catch (DivisionByZeroException de) {
                 System.out.println(de);
+                loggingException(de.toString());
             }
             rationalOrComplexMenu.show();
             itemMenu.entry();
@@ -81,24 +82,38 @@ public class Controller {
     }
 
     private void choiceOperationWithNumbers(int item) throws DivisionByZeroException{
-
+        String logResult;
         switch (item) {
             case 1 -> {
-                String logResult = (numbers.get(0).add(numbers.get(1))).toString();
                 ViewResult.show(numbers.get(0).add(numbers.get(1)));
-                String logExep = String.format("%s + %s = %s",
-                                               numbers.get(0),
-                                               numbers.get(1),
-                                               logResult);
-
-                logger.log(Level.INFO, logExep);
+                logResult = (numbers.get(0).add(numbers.get(1))).toString();
+                loggingOperaion(logResult, "+");
             }
-            case 2 -> ViewResult.show(numbers.get(0).sub(numbers.get(1)));
-            case 3 -> ViewResult.show(numbers.get(0).mul(numbers.get(1)));
-            case 4 -> ViewResult.show(numbers.get(0).div(numbers.get(1)));
+            case 2 -> {
+                ViewResult.show(numbers.get(0).sub(numbers.get(1)));
+                logResult = (numbers.get(0).sub(numbers.get(1))).toString();
+                loggingOperaion(logResult, "-");
+            }
+            case 3 -> {
+                ViewResult.show(numbers.get(0).mul(numbers.get(1)));
+                logResult = (numbers.get(0).mul(numbers.get(1))).toString();
+                loggingOperaion(logResult, "*");
+            }
+            case 4 -> {
+                ViewResult.show(numbers.get(0).div(numbers.get(1)));
+                logResult = (numbers.get(0).div(numbers.get(1))).toString();
+                loggingOperaion(logResult, "/");
+            }
         }
-//        System.out.println(numbers.get(0).add(numbers.get(1)));
 
+    }
+    private void loggingOperaion(String logResult, String operation) {
+        String logExep = String.format("%s %s %s = %s", numbers.get(0), operation,
+                                       numbers.get(1), logResult);
+        logger.log(Level.INFO, logExep);
+    }
 
+    private void loggingException(String exception) {
+        logger.log(Level.WARNING, exception);
     }
 }
