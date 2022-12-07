@@ -13,7 +13,7 @@ public class Program
             Controller Calculator = new Controller();
             Calculator.run();
         } catch (IOException ie) {
-            System.out.println("args = " + Arrays.toString(args));
+            System.out.println(ie);
         }
     }
 }
