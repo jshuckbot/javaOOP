@@ -7,20 +7,17 @@ import java.util.ArrayList;
 /**
  * Верхняя одежда
  */
-public class Outerwear extends Clothes {
-    private char gender;
+public abstract class Outerwear extends Clothes {
     private String season;
-    public Outerwear(String name, int size, String color,
+
+    public Outerwear(String name, char gender,
+                     int size, String color,
                      String composition,
-                     char gender, String season, int price) {
-        super(name, size, color, composition, price);
-        this.gender = gender;
+                     String season, int price) {
+        super(name, gender, size, color, composition, price);
         this.season = season;
     }
 
-    public char getGender() {
-        return gender;
-    }
 
     public String getSeason() {
         return season;

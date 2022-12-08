@@ -7,5 +7,5 @@ import ru.gb.Containers.Container;
  * Примерить вещи
  */
 public interface Wear {
-    void wear(Clothes clothes, Container container);
+    void wear(Clothes clothes);
 }

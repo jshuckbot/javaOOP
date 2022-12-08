@@ -1,21 +1,21 @@
 package ru.gb.Clothes;
 
-import java.util.ArrayList;
-
 public abstract class Clothes {
     private final String name;
+    private final char gender;
     private final int size;
     private final String color;
-    private String composition;
+    private final String composition;
     private final int price;
 
-    public Clothes(String name, int size, String color,
+    public Clothes(String name, char gender, int size, String color,
                    String composition, int price) {
         this.name = name;
         this.size = size;
         this.color = color;
         this.composition = composition;
         this.price = price;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -36,5 +36,9 @@ public abstract class Clothes {
 
     public int getPrice() {
         return price;
+    }
+
+    public char getGender() {
+        return gender;
     }
 }

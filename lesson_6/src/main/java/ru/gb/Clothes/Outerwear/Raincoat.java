@@ -7,13 +7,16 @@ import java.util.ArrayList;
  */
 public class Raincoat extends Coat {
 
-    public Raincoat(String name, int size, String color,
-                    String composition, char gender,
+
+    public Raincoat(String name, char gender,
+                    int size, String color,
+                    String composition,
                     String season, int price) {
-        super(name, size, color, composition, gender, season, price);
+        super(name, gender, size, color, composition, season, price);
     }
+
     @Override
     public String toString() {
-        return String.format("Плащ: %s, размер: %d;", this.getName(), this.getSize());
+        return String.format("Плащ: %s, размер: %d", this.getName(), this.getSize());
     }
 }

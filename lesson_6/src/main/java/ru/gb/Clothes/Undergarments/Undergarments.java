@@ -8,8 +8,9 @@ import java.util.ArrayList;
  */
 public class Undergarments extends Clothes {
 
-    public Undergarments(String name, int size, String color,
+    public Undergarments(String name, char gender,
+                         int size, String color,
                          String composition, int price) {
-        super(name, size, color, composition, price);
+        super(name, gender, size, color, composition, price);
     }
 }

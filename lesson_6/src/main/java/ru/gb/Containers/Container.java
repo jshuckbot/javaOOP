@@ -23,9 +23,8 @@ public abstract class Container {
     }
 
     public void setClothesList(Clothes clothes) throws FullContainer {
-        if (clothesList.size() > this.maxCount){
+        if (clothesList.size() > this.maxCount)
             throw new FullContainer(String.format("Полный %s", this));
-        }
         this.clothesList.add(clothes);
     }
 
@@ -38,10 +37,13 @@ public abstract class Container {
     }
 
     public Clothes takeClothes(Clothes clothes) throws EmptyContainer {
-        if (this.clothesList.isEmpty()) {
+        if (this.clothesList.isEmpty())
             throw new EmptyContainer(String.format("Пустой %s", this));
-        }
+        else if (!this.clothesList.contains(clothes))
+            throw new EmptyContainer(String.format("%s не содержит %s", this, clothes));
+
         int idx = clothesList.indexOf(clothes);
+
         return clothesList.remove(idx);
     }
 

@@ -1,6 +1,5 @@
 package ru.gb.Humans;
 
-
 import ru.gb.Actions.Get;
 import ru.gb.Actions.Put;
 import ru.gb.Actions.Wear;
@@ -27,7 +26,6 @@ public class Man extends Human implements Get, Put, Wear {
     }
 
     @Override
-    //должно быть в контейнере
     public void put(Clothes clothes, Container container) {
         try {
             container.setClothesList(clothes);
@@ -37,7 +35,20 @@ public class Man extends Human implements Get, Put, Wear {
         }
 
     @Override
-    public void wear(Clothes clothes, Container container) {
+    public void wear(Clothes clothes) {
+        if (clothes == null){
+            System.out.println("Такой вещи нет");
+            return;
+        }
 
+        if (clothes.getSize() == this.getSize()) {
+            if (clothes.getGender() == this.getGender())
+                System.out.printf("%s как раз\n", clothes);
+            else
+                System.out.printf("%s - вещь женская\n", clothes);
+        } else if (clothes.getGender() != this.getGender())
+                    System.out.printf("%s - вещь женская\n", clothes);
+                else
+                    System.out.printf("%s не по размеру\n", clothes);
     }
 }

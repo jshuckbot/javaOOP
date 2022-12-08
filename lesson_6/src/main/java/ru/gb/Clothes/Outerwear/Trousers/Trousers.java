@@ -8,11 +8,16 @@ import java.util.ArrayList;
  */
 public class Trousers extends Outerwear {
 
-    public Trousers(String name, int size, String color, String composition, char gender, String season, int price) {
-        super(name, size, color, composition, gender, season, price);
+
+    public Trousers(String name, char gender,
+                    int size, String color,
+                    String composition,
+                    String season, int price) {
+        super(name, gender, size, color, composition, season, price);
     }
+
     @Override
     public String toString() {
-        return String.format("Джинсы: %s, размер: %d;", this.getName(), this.getSize());
+        return String.format("Джинсы: %s, размер: %d", this.getName(), this.getSize());
     }
 }

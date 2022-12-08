@@ -7,9 +7,10 @@ import java.util.ArrayList;
  */
 public class Pajamas extends Undergarments {
 
-    public Pajamas(String name, int size, String color,
+    public Pajamas(String name, char gender,
+                   int size, String color,
                    String composition, int price) {
-        super(name, size, color, composition, price);
+        super(name, gender, size, color, composition, price);
     }
 
     @Override

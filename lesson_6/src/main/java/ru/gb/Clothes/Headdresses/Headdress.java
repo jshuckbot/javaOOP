@@ -6,10 +6,11 @@ import java.util.ArrayList;
 /**
  * Головной убор
  */
-public class Headdress extends Clothes {
+public abstract class Headdress extends Clothes {
 
-    public Headdress(String name, int size, String color,
+    public Headdress(String name, char gender,
+                     int size, String color,
                      String composition, int price) {
-        super(name, size, color, composition, price);
+        super(name, gender, size, color, composition, price);
     }
 }

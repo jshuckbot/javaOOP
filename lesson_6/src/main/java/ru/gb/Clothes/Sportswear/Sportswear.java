@@ -6,11 +6,12 @@ import java.util.ArrayList;
 /**
  * Спортивный одежда
  */
-public class Sportswear extends Clothes {
+public abstract class Sportswear extends Clothes {
 
-    public Sportswear(String name, int size, String color,
+
+    public Sportswear(String name, char gender,
+                      int size, String color,
                       String composition, int price) {
-        super(name, size, color, composition, price);
+        super(name, gender, size, color, composition, price);
     }
-    
 }
