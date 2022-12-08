@@ -1,9 +1,13 @@
 package ru.gb;
 
-import ru.gb.Clothes.Outerwear;
 
-import java.util.ArrayList;
-import java.util.List;
+import ru.gb.Clothes.Outerwear.Trousers.Jeans;
+import ru.gb.Containers.Wardrobe;
+import ru.gb.Exception.EmptyContainer;
+import ru.gb.Exception.FullContainer;
+import ru.gb.Humans.Man;
+import java.lang.module.FindException;
+
 
 /**
  * Lesson 6
@@ -11,10 +15,14 @@ import java.util.List;
  */
 public class Program
 {
-    public static void main( String[] args )
-    {
-        ArrayList<String> composition = new ArrayList<>(List.of("шерсть", "полиэстер"));
-        Outerwear coat = new Outerwear("Bershka", 48, "белый" , composition, 'Ж', "Зима" , 4000);
-        System.out.println(coat.getComposition());
+    public static void main( String[] args ) {
+        Wardrobe wardrobe = new Wardrobe(3);
+        Man ivan = new Man("Иван", 'М', 48);
+        Jeans peserico = new Jeans("Peserico", 48, "белые", "Хлопок", 'М', "Лето", 4000);
+            ivan.put(peserico, wardrobe);
+            ivan.put(peserico, wardrobe);
+            System.out.println(ivan.get(peserico, wardrobe));
+            System.out.println(ivan.get(peserico, wardrobe));
+
     }
 }

@@ -6,11 +6,11 @@ public abstract class Clothes {
     private final String name;
     private final int size;
     private final String color;
-    private ArrayList<String> composition;
+    private String composition;
     private final int price;
 
     public Clothes(String name, int size, String color,
-                   ArrayList<String> composition, int price) {
+                   String composition, int price) {
         this.name = name;
         this.size = size;
         this.color = color;
@@ -30,7 +30,7 @@ public abstract class Clothes {
         return color;
     }
 
-    public ArrayList<String> getComposition() {
+    public String getComposition() {
         return composition;
     }
 

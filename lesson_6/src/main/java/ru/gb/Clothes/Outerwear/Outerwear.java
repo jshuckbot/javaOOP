@@ -1,12 +1,17 @@
-package ru.gb.Clothes;
+package ru.gb.Clothes.Outerwear;
+
+import ru.gb.Clothes.Clothes;
 
 import java.util.ArrayList;
 
-public class Outerwear extends Clothes{
+/**
+ * Верхняя одежда
+ */
+public class Outerwear extends Clothes {
     private char gender;
     private String season;
     public Outerwear(String name, int size, String color,
-                     ArrayList<String> composition,
+                     String composition,
                      char gender, String season, int price) {
         super(name, size, color, composition, price);
         this.gender = gender;
